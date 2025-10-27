@@ -4,4 +4,4 @@
 
 [node name="main" type="Node2D"]
 
-[node name="cardManager" parent="." instance=ExtResource("1_ig7tw")]
+[node name="card" parent="." instance=ExtResource("1_ig7tw")]

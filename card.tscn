@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq144bffu8g3h"]
+
+[ext_resource type="Script" uid="uid://f8fhuf0bag0k" path="res://cardManager.gd" id="1_rjlel"]
+[ext_resource type="Texture2D" uid="uid://dw2c6xaduilmc" path="res://MTG Template Card.png" id="2_rjlel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
+size = Vector2(200, 284)
+
+[node name="cardManager" type="Node2D"]
+script = ExtResource("1_rjlel")
+
+[node name="card" type="Node2D" parent="."]
+
+[node name="cardBody" type="Sprite2D" parent="card"]
+position = Vector2(100, 142)
+texture = ExtResource("2_rjlel")
+
+[node name="cardArea" type="Area2D" parent="card"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="card/cardArea"]
+position = Vector2(100, 142)
+shape = SubResource("RectangleShape2D_rjlel")
+
+[node name="card2" type="Node2D" parent="."]
+position = Vector2(400, 0)
+
+[node name="cardBody" type="Sprite2D" parent="card2"]
+position = Vector2(100, 142)
+texture = ExtResource("2_rjlel")
+
+[node name="cardArea" type="Area2D" parent="card2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="card2/cardArea"]
+position = Vector2(100, 142)
+shape = SubResource("RectangleShape2D_rjlel")
+
+[node name="card3" type="Node2D" parent="."]
+position = Vector2(400, 400)
+
+[node name="cardBody" type="Sprite2D" parent="card3"]
+position = Vector2(100, 142)
+texture = ExtResource("2_rjlel")
+
+[node name="cardArea" type="Area2D" parent="card3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="card3/cardArea"]
+position = Vector2(100, 142)
+shape = SubResource("RectangleShape2D_rjlel")
