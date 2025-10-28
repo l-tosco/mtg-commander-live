@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://f8fhuf0bag0k" path="res://cardManager.gd" id="1_rjlel"]
 [ext_resource type="Script" uid="uid://cvnbk0q6x17mx" path="res://card.gd" id="2_q5obu"]
-[ext_resource type="Texture2D" uid="uid://dw2c6xaduilmc" path="res://MTG Template Card.png" id="2_rjlel"]
+[ext_resource type="Texture2D" uid="uid://dw2c6xaduilmc" path="res://Assets/MTG Template Card.png" id="2_rjlel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
 size = Vector2(200, 284)
