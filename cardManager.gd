@@ -6,6 +6,7 @@ const CARD_SIZE_Y: float = 200
 const MOUSE_CENTER_OFFSET_X: float = -40
 const MOUSE_CENTER_OFFSET_Y: float = 20
 
+var isHovering: bool = false
 var currentTopZIndex: int = 0
 var cardDraggedID
 var screenSize
@@ -41,13 +42,36 @@ func _input(event):
 	# uma vez que eu cliquei, ativa o evento, não repetindo o processo
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed == true: 
-			var card = check_for_card()
-			if (card != null):
-				cardDraggedID = card
+			var activeCard = check_for_card()
+			if (activeCard != null):
+				cardDraggedID = activeCard
 				currentTopZIndex += 1 # aqui é só pra garantir que o card que está sendo arrastado ficará acima de qualquer outro na tela
-				card.z_index = currentTopZIndex
+				activeCard.z_index = currentTopZIndex
 		else:
 			cardDraggedID = null
+
+func connect_card_signals(card):
+	card.connect("mouseIn", mouse_in_card)
+	card.connect("mouseOff", mouse_off_card)
+	
+func mouse_in_card(card):
+	if (isHovering == false):
+		isHovering = true
+		highlight_card(card, true)
+	
+func mouse_off_card(card):
+	highlight_card(card, false)
+	card = check_for_card()
+	if (card != null):
+		highlight_card(card, true)
+	else:
+		isHovering = false
+	
+func highlight_card(card, mouseIn):
+	if mouseIn == true:
+		card.scale = Vector2(1.10, 1.10)
+	else:
+		card.scale = Vector2(1,1)
 
 # Essa função pega a posição do mouse e aplica um offset para centralizar no card, e então restringe a posição do mouse (clamp) para não escapar da tela
 func drag_card_logic() -> void:

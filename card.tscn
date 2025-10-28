@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq144bffu8g3h"]
+[gd_scene load_steps=5 format=3 uid="uid://dq144bffu8g3h"]
 
 [ext_resource type="Script" uid="uid://f8fhuf0bag0k" path="res://cardManager.gd" id="1_rjlel"]
+[ext_resource type="Script" uid="uid://cvnbk0q6x17mx" path="res://card.gd" id="2_q5obu"]
 [ext_resource type="Texture2D" uid="uid://dw2c6xaduilmc" path="res://MTG Template Card.png" id="2_rjlel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjlel"]
@@ -10,6 +11,7 @@ size = Vector2(200, 284)
 script = ExtResource("1_rjlel")
 
 [node name="card" type="Node2D" parent="."]
+script = ExtResource("2_q5obu")
 
 [node name="cardBody" type="Sprite2D" parent="card"]
 position = Vector2(100, 142)
@@ -23,6 +25,7 @@ shape = SubResource("RectangleShape2D_rjlel")
 
 [node name="card2" type="Node2D" parent="."]
 position = Vector2(400, 0)
+script = ExtResource("2_q5obu")
 
 [node name="cardBody" type="Sprite2D" parent="card2"]
 position = Vector2(100, 142)
@@ -36,6 +39,7 @@ shape = SubResource("RectangleShape2D_rjlel")
 
 [node name="card3" type="Node2D" parent="."]
 position = Vector2(400, 400)
+script = ExtResource("2_q5obu")
 
 [node name="cardBody" type="Sprite2D" parent="card3"]
 position = Vector2(100, 142)
@@ -46,3 +50,10 @@ texture = ExtResource("2_rjlel")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="card3/cardArea"]
 position = Vector2(100, 142)
 shape = SubResource("RectangleShape2D_rjlel")
+
+[connection signal="mouse_entered" from="card/cardArea" to="card" method="_on_card_area_mouse_entered"]
+[connection signal="mouse_exited" from="card/cardArea" to="card" method="_on_card_area_mouse_exited"]
+[connection signal="mouse_entered" from="card2/cardArea" to="card2" method="_on_card_area_mouse_entered"]
+[connection signal="mouse_exited" from="card2/cardArea" to="card2" method="_on_card_area_mouse_exited"]
+[connection signal="mouse_entered" from="card3/cardArea" to="card3" method="_on_card_area_mouse_entered"]
+[connection signal="mouse_exited" from="card3/cardArea" to="card3" method="_on_card_area_mouse_exited"]
