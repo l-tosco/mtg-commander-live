@@ -1,10 +1,10 @@
 extends Node2D
 
 const COLLISION_MASK_CARD: int = 1
-const CARD_SIZE_X: float = 283
-const CARD_SIZE_Y: float = 200
-const MOUSE_CENTER_OFFSET_X: float = -40
-const MOUSE_CENTER_OFFSET_Y: float = 20
+const CARD_SIZE_X: float = 141
+const CARD_SIZE_Y: float = 100
+const MOUSE_CENTER_OFFSET_X: float = -20
+const MOUSE_CENTER_OFFSET_Y: float = 10
 
 enum collisionMask {
 	cardMask = 1,
@@ -15,9 +15,11 @@ var isHovering: bool = false
 var currentTopZIndex: int = 0
 var cardDraggedID
 var screenSize
+var playerHandRef
 
 func _ready() -> void:
 	screenSize = get_viewport_rect().size
+	playerHandRef = $"../playerHand"
 
 func _process(_delta: float) -> void:
 	drag_card_logic() # por enquanto o card manager verifica só isso no void loop
@@ -55,26 +57,30 @@ func _input(event):
 				cardDraggedID = activeCard
 				currentTopZIndex += 1 # aqui é só pra garantir que o card que está sendo arrastado ficará acima de qualquer outro na tela
 				activeCard.z_index = currentTopZIndex
-				activeCard.scale = Vector2(1,1)
+				activeCard.scale = Vector2(0.5,0.5)
 		else:
 			var cardSlotFound = check_for_card(collisionMask.cardSlotMask)
 			if ((cardSlotFound != null) and (cardSlotFound.cardInSlot == false)):
+				playerHandRef.remove_card_from_hand(cardDraggedID)
 				cardDraggedID.position = cardSlotFound.position
 				cardDraggedID.get_node("cardArea/CollisionShape2D").disabled = true
 				cardSlotFound.cardInSlot = true
+			else:
+				playerHandRef.add_card_to_hand(cardDraggedID)
 			if (cardDraggedID != null): #preciso checar de novo pois se o click for rapido demais, a ref some antes de setar a escala e crasha o jogo...
-				cardDraggedID.scale = Vector2(1.10, 1.10)
+				cardDraggedID.scale = Vector2(0.6, 0.6)
 				cardDraggedID = null
 
 func connect_card_signals(card):
-	card.connect("mouseIn", mouse_in_card)
-	card.connect("mouseOff", mouse_off_card)
+	# os sinais pararam de funcionar agora que está instanciado, não esquecer
+	card.connect("mouseIn", Callable(self, "mouse_in_card"))
+	card.connect("mouseOff", Callable(self, "mouse_off_card"))
 	
 func mouse_in_card(card):
 	if (isHovering == false):
 		isHovering = true
 		highlight_card(card, true)
-	
+		
 func mouse_off_card(card):
 	if (cardDraggedID == null):
 		highlight_card(card, false)
@@ -83,12 +89,12 @@ func mouse_off_card(card):
 			highlight_card(card, true)
 		else:
 			isHovering = false
-	
+
 func highlight_card(card, mouseIn):
 	if mouseIn == true:
-		card.scale = Vector2(1.10, 1.10)
+		card.scale = Vector2(0.6, 0.6)
 	else:
-		card.scale = Vector2(1,1)
+		card.scale = Vector2(0.5,0.5)
 
 # Essa função pega a posição do mouse e aplica um offset para centralizar no card, e então restringe a posição do mouse (clamp) para não escapar da tela
 func drag_card_logic() -> void:

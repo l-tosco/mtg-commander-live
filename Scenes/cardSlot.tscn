@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://daqjda6bui6ir"]
+
+[ext_resource type="Script" uid="uid://xjmbkdjulbv" path="res://Scripts/cardSlot.gd" id="1_4kaac"]
+[ext_resource type="Texture2D" uid="uid://vp8hwmtowdra" path="res://Assets/MTG Template Card Slot.png" id="1_kf1f5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kaac"]
+size = Vector2(200, 284)
+
+[node name="cardSlotManager" type="Node2D"]
+
+[node name="cardSlot" type="Node2D" parent="."]
+position = Vector2(117, 370)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4kaac")
+
+[node name="cardSlotBody" type="Sprite2D" parent="cardSlot"]
+position = Vector2(100, 142)
+texture = ExtResource("1_kf1f5")
+
+[node name="cardSlotArea" type="Area2D" parent="cardSlot"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cardSlot/cardSlotArea"]
+position = Vector2(100, 142)
+shape = SubResource("RectangleShape2D_4kaac")
+
+[node name="cardSlot2" type="Node2D" parent="."]
+position = Vector2(349, 368)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4kaac")
+
+[node name="cardSlotBody" type="Sprite2D" parent="cardSlot2"]
+position = Vector2(100, 142)
+texture = ExtResource("1_kf1f5")
+
+[node name="cardSlotArea" type="Area2D" parent="cardSlot2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cardSlot2/cardSlotArea"]
+position = Vector2(100, 142)
+shape = SubResource("RectangleShape2D_4kaac")
+
+[node name="cardSlot3" type="Node2D" parent="."]
+position = Vector2(865, 367)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4kaac")
+
+[node name="cardSlotBody" type="Sprite2D" parent="cardSlot3"]
+position = Vector2(100, 142)
+texture = ExtResource("1_kf1f5")
+
+[node name="cardSlotArea" type="Area2D" parent="cardSlot3"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cardSlot3/cardSlotArea"]
+position = Vector2(100, 142)
+shape = SubResource("RectangleShape2D_4kaac")
+
+[node name="cardSlot4" type="Node2D" parent="."]
+position = Vector2(1142, 365)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4kaac")
+
+[node name="cardSlotBody" type="Sprite2D" parent="cardSlot4"]
+position = Vector2(100, 142)
+texture = ExtResource("1_kf1f5")
+
+[node name="cardSlotArea" type="Area2D" parent="cardSlot4"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cardSlot4/cardSlotArea"]
+position = Vector2(100, 142)
+shape = SubResource("RectangleShape2D_4kaac")
+
+[node name="cardSlot5" type="Node2D" parent="."]
+position = Vector2(596, 370)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_4kaac")
+
+[node name="cardSlotBody" type="Sprite2D" parent="cardSlot5"]
+position = Vector2(100, 142)
+texture = ExtResource("1_kf1f5")
+
+[node name="cardSlotArea" type="Area2D" parent="cardSlot5"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cardSlot5/cardSlotArea"]
+position = Vector2(100, 142)
+shape = SubResource("RectangleShape2D_4kaac")
